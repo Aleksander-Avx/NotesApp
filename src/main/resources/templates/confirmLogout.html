@@ -1,0 +1,17 @@
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
+<head th:insert="blocks/head"><title></title></head>
+<header th:insert="blocks/header"></header>
+
+<body>
+<h5 style="color: green" th:inline="text"> [[${#httpServletRequest.getUserPrincipal.getName}]]- уже уходите? </h5>
+<form th:action="@{/user/logout}" method="post">
+  <button class="btn btn-secondary btn-sm" type="submit">Да, ухожу.</button>
+  <input type="button" value="Нет! Вернуться назад." class="btn btn-primary btn-sm" onclick="history.back()">
+  <input name="_csrf" type="hidden" value="e4b50f0c-4caf-4678-aaf3-55b52f554c8e">
+</form>
+</body>
+<footer th:insert="blocks/footer"></footer>
+</html>

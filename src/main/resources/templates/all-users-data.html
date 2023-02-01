@@ -1,0 +1,60 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:insert="blocks/head"><title></title></head>
+<header th:insert="blocks/header"></header>
+<style>
+  .colortext {
+    color: #ffffff; /* Цвет текста */
+  }
+</style>
+<style type="text/css" >
+  TABLE {
+    width: 1300px; /* Ширина таблицы */
+    border-collapse: collapse; /* Убираем двойные линии между ячейками */
+    margin-left: 30px;
+  }
+  TD, TH {
+
+    padding: 6px; /* Поля вокруг содержимого таблицы */
+    border: 1px solid black; /* Параметры рамки */
+  }
+  TH {
+    background: #046427; /* Цвет фона */
+  }
+</style>
+<style>
+  body{}
+  .first {
+    margin-left: 30px; /* Отступы слева элемента */
+  }
+</style>
+<body>
+<table>
+  <tr align="center">
+    <th width="70 px;" class="colortext">ID</th>
+    <th width="300 px;" class="colortext">Еmail</th>
+    <th width="300 px;" class="colortext">Пароль</th>
+    <th width="150 px;" class="colortext">Роль</th>
+    <th width="330 px;" class="colortext">Операции</th>
+  </tr>
+  <tr th:each="thisUser : ${allUsers}">
+    <td align="center" th:text="${thisUser.id}"></td>
+    <td align="center" th:text="${thisUser.email}"></td>
+    <td align="center" th:text="${thisUser.password}"></td>
+    <td align="center" th:text="${thisUser.role}"></td>
+    <td align="center">
+
+      <a class="btn btn-secondary btn-sm" th:href="@{/admin/users/edit/{id}(id=${thisUser.id})}">Редактировать</a>
+      <a class="btn btn-secondary btn-sm" th:href="@{/admin/users/delete/{id}(id=${thisUser.id})}">Удалить</a>
+
+    </td>
+
+  </tr>
+</table>
+<br><br>
+<div class="first">
+  <input class="btn btn-primary btn-sm" type="button" value="Добавить пользователя" onclick="window.location.href='/user/new'"/>
+  <input class="btn btn-secondary btn-sm" type="button" value="Назад" onclick="history.back()">
+</div>
+</body>
+<footer th:insert="blocks/footer"></footer>
+</html>

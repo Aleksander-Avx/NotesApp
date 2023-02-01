@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Аутентификация</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+  <form name="f" th:action="@{/perform-login}" method="post">
+    <h3 class="form-signin-heading">
+      Войдите в аккаунт или зарегистрируйтесь.<br>
+    </h3>
+    <br>
+    <div th:if="${param.error}" class="alert alert-error">
+      Введены не корректные данные
+    </div>
+    <p>
+      <label for="email" class="sr-only">Name</label>
+      <input type="text" id="email" name="email" class="form-control" placeholder="Введите адрес электронной почты" required="" autofocus=""/>
+      <input name="_csrf" type="hidden" value="e4b50f0c-4caf-4678-aaf3-55b52f554c8e"/>
+    </p>
+    <p>
+      <label for="password" class="sr-only">Password</label>
+      <input type="password" id="password" name="password" class="form-control" placeholder="Введите пароль" required=""/>
+      <input name="_csrf" type="hidden" value="e4b50f0c-4caf-4678-aaf3-55b52f554c8e">
+    </p>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Вход</button>
+    <input class="btn btn-lg btn-primary btn-block" type="button" value="Регистрация" onclick="window.location.href='/user/new'">
+  </form>
+</div>
+</body></html>

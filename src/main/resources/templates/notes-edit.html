@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:insert="blocks/head"><title></title></head>
+<header th:insert="blocks/header"></header>
+<body>
+<div class="container mt-5">
+  <h2>Редактирование статьи</h2>
+  <form name="#" th:action="@{/notes/notes-edit}" method="post">
+    <div th:each="element : ${notes}">
+      <input type="hidden" name="id" th:value="${element.id}"/>
+      <input type="text" name="header" th:value="${element.header}" placeholder="Заголовок"
+             class="form-control"><br>
+      <input readonly type="text" name="dateOfCreating" th:value="${#dates.format(element.dateOfCreating,'dd-MM-yyyy')}" placeholder="Дата создания"
+             class="form-control"><br>
+          <input type="text" name="dateOfUpdate" placeholder="Дата Обновления dd-mm-yyyy" class="form-control"
+                 required minlength="10" maxlength="10"><br>
+      <textarea name="text" placeholder="Введите заметку" class="form-control"
+                th:text="${element.text}"></textarea>
+      <input name="_csrf" type="hidden" value="e4b50f0c-4caf-4678-aaf3-55b52f554c8e">
+      <br><br>
+      <button type="submit" class="btn btn-success">Обновить статью</button>
+    </div>
+  </form>
+</div>
+
+
+<footer th:insert="blocks/footer"></footer>
+</body>
+</html>
